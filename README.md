@@ -46,6 +46,8 @@ pip install -r requirements/compiled.txt
 ```
 
 **Step 3 - Create a database**
+First you need to install PostgreSQL on your computer. Please follow the related
+instructions for your Operating System on [the PostgreSQL website](http://www.postgresql.org/download/).
 
 To create a database in PostgreSQL there are different approaches. The simplest
 is the `createdb` command. How you handle credentials, roles and permissions is
@@ -54,6 +56,13 @@ generally out of scope for this tutorial.
 ```
 createdb -E UTF8 airmozilla
 ```
+If you have encountered the error: ```FATAL: Peer authentication failed for user "postgres"```, 
+you may solve it with changing your pg_hba(which on linux is usually located in /etc/postgresql/9.1/main/pg_hba.conf) This line:
+
+```local   all             postgres                                peer```
+Should be changed to
+```local   all             postgres                                md5```
+Please restart your Postgresql server after altering this file. If you're on Linux, that would be ```sudo service postgresql restart```.
 
 You might at that point need to supply a specific username and/or password.
 Whichever it is, take a note of it because you'll need it to set up your settings.
@@ -171,6 +180,13 @@ The very first thing to run are these commands:
 ```
 The `syncdb` command will ask you to set up a first default superuser. Make
 sure you use an email address that you can log in to Persona with.
+
+If you have encounter problem in running the ```./manage.py syncdb``` command, you may need to install the following packages:
+build-dep python-psycopg2
+and the following Python packages using pip:
+psycopg2
+Jinja2
+py-bcrypt
 
 And last but not least:
 ```
