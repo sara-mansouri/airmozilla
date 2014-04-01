@@ -46,6 +46,9 @@ pip install -r requirements/compiled.txt
 ```
 
 **Step 3 - Create a database**
+First you need to install PostgreSQL on your computer. Please follow the
+related instructions for your Operating System on
+the PostgreSQL website](http://www.postgresql.org/download/).
 
 To create a database in PostgreSQL there are different approaches. The simplest
 is the `createdb` command. How you handle credentials, roles and permissions is
@@ -163,7 +166,10 @@ at all without having certain security settings, it's considered a bug.
 
 **Step 5 - Running for the first time**
 
-The very first thing to run are these commands:
+First you need to install all the required packages using this command:
+```pip install -r requirements/compiled.txt```
+
+After that, you need to run these commands: 
 
 ```
 ./manage.py syncdb
